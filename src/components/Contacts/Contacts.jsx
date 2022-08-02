@@ -6,13 +6,12 @@ import ConactCard from "components/ConactCard/ConactCard";
 
 
 export default class Contacts extends Component{
-    state={
-        contacts: this.props.contacts,
-    }
+   
 
     getCardMarking(){
-        return (this.state.contacts.map( (user) =>
+        return (this.props.contacts.map( (user) =>
                 <ConactCard 
+            key={user.name}
             name = {user.name}
             number = {user.number}/>
             )
@@ -23,6 +22,7 @@ export default class Contacts extends Component{
 
 
     render(){
+        
         return (
             <List>
                 {this.getCardMarking()}

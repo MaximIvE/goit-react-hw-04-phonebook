@@ -1,15 +1,26 @@
-import { render } from '@testing-library/react';
-import React, { Component } from 'react';
+import React from 'react';
+import { Component } from 'react';
 
 
 export default class DataInputForm extends Component{
+    state = {
+        value: "qwery",
+    }
 
+    abc(e){
+        console.log(e.nativeEvent.data);
+        console.log('132', this.state);
+        // this.setState({value: 'qweryx'})
+    }
 
     render(){
+        console.log(this.state);
         return (
-        <div>
+        <div >
             <label>Name
             <input
+                onChange={this.abc}
+                // value={this.state.value}
                 type="text"
                 name="name"
                 pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -17,9 +28,8 @@ export default class DataInputForm extends Component{
                 required
             />
             </label>
-            <button type='submit'>Add contact</button>
+            <button type='submit' name="contacts">Contacts</button>
         </div>
-     
     );
         
     }

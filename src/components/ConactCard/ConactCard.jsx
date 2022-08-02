@@ -1,9 +1,9 @@
-import { Card, Text, Button } from "./ConactCard .styled";
+import { Card, Name, Phone, Button } from "./ConactCard .styled";
 
 export default function ConactCard({name, number}){
     return (<Card>
-        <Text>{name}</Text>
-        <Text>{number}</Text>
+        <Name>{name}</Name>
+        <Phone>{number}</Phone>
         <Button type='button'>Delete</Button>
     </Card>)
 }
