@@ -13,20 +13,24 @@ export default class Contacts extends Component{
                 <ConactCard 
             key={user.name + user.phone}
             name = {user.name}
-            number = {user.number}/>
+            number = {user.number}
+            removeCard={this.removeCard}/>
             )
             );
-        
+    }
+
+    removeCard = (e) => {
+        this.props.removeConactApp(e.currentTarget.name);
     }
     
-
-
+    
     render(){
-        
+        console.log(<List>
+            {this.getCardMarking()}
+        </List>);
         return (
             <List>
                 {this.getCardMarking()}
-                
             </List>
         )
     }

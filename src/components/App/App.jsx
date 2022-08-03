@@ -21,7 +21,20 @@ export default class App extends Component{
   }
 
   addContact=(card)=>{
+    const {name} = card;
+    if (!this.isUnique(name)){
+      alert("fsgdsg");
+      return;
+    }
     this.setState((prevState) => {return{contacts: [card, ...prevState.contacts]}});
+  }
+
+  isUnique(name){
+    let unique = true;
+    for (const contact of this.state.contacts){
+      if (contact.name === name){unique = false; }
+    }
+    return unique;
   }
 
   handleFilter=(filter)=>{
@@ -32,11 +45,18 @@ export default class App extends Component{
     return this.state.contacts.filter((user)=>{return user.name})
   }
 
-  render(){  
+  removeConactApp=(id)=>{
+    console.log("Delete element width id=", id, " for state");
+    const newContacts = this.state.contacts.filter(contact => {return ((contact.name + contact.number) !== id )});
+    console.log(newContacts);
+    this.setState({contacts: newContacts});
+    
+  }
 
+  render(){  
     const normalizeTodos = this.state.filter.toLowerCase();
     const visibleContacts = this.state.contacts.filter(contact => contact.name.toLowerCase().includes(normalizeTodos));
-
+    console.log(this.state)
     return (
       <Container >
         
@@ -50,6 +70,7 @@ export default class App extends Component{
               <Filter handleFilter={this.handleFilter}/>
               <Contacts 
               contacts={visibleContacts}
+              removeConactApp={this.removeConactApp}
               />
             </Section>
           : <p>No information.</p>}
@@ -57,9 +78,6 @@ export default class App extends Component{
       </Container>
     
     )
-
   };
-
-
 }
 
