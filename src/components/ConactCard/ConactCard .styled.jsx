@@ -6,19 +6,16 @@ export const Card = styled.li`
     align-items: center;
     height: 24px;
     margin: 0;
-
+    border-bottom:  rgba(0,0,0,0.1) 1px solid;
 `;
 
 export const Name = styled.p`
 margin-right: 8px;
-width: 104px;
+width: 40%;
 `;
 
 export const Phone = styled.p`
 margin-right: 8px;
-width: 96px;
+width: 50%;
 `;
 
-export const Button = styled.button`
-padding: 2px;
-`;

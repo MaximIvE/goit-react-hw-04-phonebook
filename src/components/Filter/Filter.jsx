@@ -1,6 +1,8 @@
 import { Component } from "react";
 import { nanoid } from 'nanoid'
 
+import { FilterSection,Input } from "./Filter.styled";
+
 
 export default class Filter extends Component{
     idInputFilter = nanoid();
@@ -11,14 +13,14 @@ export default class Filter extends Component{
 
     render(){
 
-        return <div>
+        return <FilterSection>
         <label htmlFor={this.idInputFilter}>Find contacts by name</label>
-        <input 
+        <Input 
         id={this.idInputFilter}
         type="text"
-        onChange={this.handlefilter}>
-
-        </input>
-    </div>
+        onChange={this.handlefilter}
+        placeholder='Name'>
+        </Input>
+    </FilterSection>
     }
 }

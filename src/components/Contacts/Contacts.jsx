@@ -23,11 +23,7 @@ export default class Contacts extends Component{
         this.props.removeConactApp(e.currentTarget.name);
     }
     
-    
     render(){
-        console.log(<List>
-            {this.getCardMarking()}
-        </List>);
         return (
             <List>
                 {this.getCardMarking()}

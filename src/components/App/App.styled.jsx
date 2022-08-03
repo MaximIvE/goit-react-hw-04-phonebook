@@ -9,9 +9,14 @@ export const Container = styled.div`
     background-size: cover;
     height: 100vh;
     display: flex;
-    flex-direction: column;
     
-    align-items: center;
-    // font-size: 40px;
+   
     color: #010101;
+`;
+
+export const Message = styled.p`
+text-align: center;
+font-style: italic;
+font-size: 20px;
+width: 80vw;
 `;
