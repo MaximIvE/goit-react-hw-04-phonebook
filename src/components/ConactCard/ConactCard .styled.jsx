@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Card = styled.li`
     display: flex;
-    padding: 8px;
+    padding: 4px;
     align-items: center;
     height: 24px;
     margin: 0;

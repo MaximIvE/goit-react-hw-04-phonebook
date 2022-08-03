@@ -11,7 +11,7 @@ export default class Contacts extends Component{
     getCardMarking(){
         return (this.props.contacts.map( (user) =>
                 <ConactCard 
-            key={user.name}
+            key={user.name + user.phone}
             name = {user.name}
             number = {user.number}/>
             )
