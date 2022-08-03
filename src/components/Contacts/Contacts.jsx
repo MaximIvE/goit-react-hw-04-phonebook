@@ -1,13 +1,10 @@
 import { Component } from "react";
 import {List} from './Contacts.styled';
 import ConactCard from "components/ConactCard/ConactCard";
-
-
+import PropTypes from 'prop-types';
 
 
 export default class Contacts extends Component{
-   
-
     getCardMarking(){
         return (this.props.contacts.map( (user) =>
                 <ConactCard 
@@ -30,4 +27,11 @@ export default class Contacts extends Component{
             </List>
         )
     }
+}
+
+
+Contacts.propTypes={
+    removeConactApp: PropTypes.func.isRequired,
+    contacts: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string).isRequired,
+    )
 }

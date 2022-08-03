@@ -1,5 +1,6 @@
 import { Component } from "react";
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 import { FilterSection,Input } from "./Filter.styled";
 
@@ -23,4 +24,8 @@ export default class Filter extends Component{
         </Input>
     </FilterSection>
     }
+}
+
+Filter.propTypes={
+    handleFilter: PropTypes.func.isRequired,
 }

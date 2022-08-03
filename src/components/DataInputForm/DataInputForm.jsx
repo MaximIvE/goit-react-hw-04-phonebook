@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 import { DataInput,Button } from './DataInputForm.styled';
 
@@ -29,10 +30,8 @@ export default class DataInputForm extends Component{
     }
 
     render(){
-
         return (
         <DataInput onSubmit={this.handleSubmit}>
-            
             <label htmlFor={this.idInputName}>Name</label>
             <input
                 type="text"
@@ -45,7 +44,6 @@ export default class DataInputForm extends Component{
                 onChange={this.handleInputChange}
             />
             
-
             <label htmlFor={this.idInputNumber}>Number</label>
             <input
                 onChange={this.handleInputChange}
@@ -57,18 +55,16 @@ export default class DataInputForm extends Component{
                 title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                 required
                 />
-            
-
             <Button 
             type='submit' 
             name="contacts" 
-            
-
             >Add contact
             </Button>
-            
         </DataInput>
     );
-        
     }
+}
+
+DataInputForm.propTypes={
+    addContact: PropTypes.func.isRequired,
 }
