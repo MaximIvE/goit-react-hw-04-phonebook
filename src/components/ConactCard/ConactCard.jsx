@@ -3,10 +3,10 @@ import { Card, Name, Phone } from "./ConactCard .styled";
 
 
 export default function ConactCard({name, number, removeCard}){
-    return (<Card name={name} id={name + number}>
+    return (<Card name={name} id={name}>
         <Name>{name}</Name>
         <Phone>{number}</Phone>
-        <button type='button' onClick={removeCard} name={name + number}>Delete</button>
+        <button type='button' onClick={removeCard} name={name}>Delete</button>
     </Card>)
 }
 

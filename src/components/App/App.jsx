@@ -20,19 +20,11 @@ export default class App extends Component{
 
   addContact=(card)=>{
     const {name} = card;
-    if (!this.isUnique(name)){
+    if (this.state.contacts.find(contact => contact.name === name)){
       alert(name + " is already in contacts.");
       return;
     }
     this.setState((prevState) => {return{contacts: [card, ...prevState.contacts]}});
-  }
-
-  isUnique(name){
-    let unique = true;
-    for (const contact of this.state.contacts){
-      if (contact.name === name){unique = false; }
-    }
-    return unique;
   }
 
   handleFilter=(filter)=>{
@@ -44,7 +36,7 @@ export default class App extends Component{
   }
 
   removeConactApp=(id)=>{
-    const newContacts = this.state.contacts.filter(contact => {return ((contact.name + contact.number) !== id )});
+    const newContacts = this.state.contacts.filter(contact => {return ((contact.name) !== id )});
     this.setState({contacts: newContacts});
     
   }
