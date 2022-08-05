@@ -27,6 +27,18 @@ export default class App extends Component{
     this.setState((prevState) => {return{contacts: [card, ...prevState.contacts]}});
   }
 
+  componentDidMount(){
+    //Запускається 1 раз під час монтування компонента, перед render()
+    console.log('compoundDidMount()');
+    
+  };
+
+  componentDidUpdate(prevState){
+    if(this.state.contacts !== prevState.contacts){ 
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  };
+
   handleFilter=(filter)=>{
     this.setState(filter);
   }
@@ -42,6 +54,7 @@ export default class App extends Component{
   }
 
   render(){  
+    console.log('render()');
     const normalizeTodos = this.state.filter.toLowerCase();
     const visibleContacts = this.state.contacts.filter(contact => contact.name.toLowerCase().includes(normalizeTodos));
     return (
