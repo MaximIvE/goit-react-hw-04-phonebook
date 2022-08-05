@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from '../../styles/placeholders.styled';
 
 export const DataInput = styled.form`
     display: flex;
@@ -7,7 +8,7 @@ export const DataInput = styled.form`
     
 `;
 
-export const Button = styled.button`
+export const ButtonForm = styled(Button)`
 margin-top: 8px;
 width: 90px;
 margin-left: auto;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from '../../styles/placeholders.styled'
 
 export const Card = styled.li`
     display: flex;
@@ -19,3 +20,6 @@ margin-right: 8px;
 width: 50%;
 `;
 
+export const ButtonCard = styled(Button)`
+padding: 4px 6px 4px 4px; 
+`;

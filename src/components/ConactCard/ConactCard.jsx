@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import { Card, Name, Phone } from "./ConactCard .styled";
+import { Card, Name, Phone, ButtonCard } from "./ConactCard .styled";
 
 
 export default function ConactCard({name, number, removeCard}){
     return (<Card name={name} id={name}>
         <Name>{name}</Name>
         <Phone>{number}</Phone>
-        <button type='button' onClick={removeCard} name={name}>Delete</button>
+        <ButtonCard type='button' onClick={removeCard} name={name}>Delete</ButtonCard>
     </Card>)
 }
 
