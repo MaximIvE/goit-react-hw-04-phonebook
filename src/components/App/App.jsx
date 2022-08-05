@@ -12,7 +12,7 @@ export default class App extends Component{
     contacts: [],
     filter: "",
   }
-  
+
   // defaultContacts = [
   //   {name: 'Rosie Simpson', number: '459-12-56'},
   //   {name: 'Hermione Kline', number: '443-89-12'},
@@ -59,10 +59,20 @@ export default class App extends Component{
     
   }
 
+  sort = (arrOfObj) => {
+    const arr = [...arrOfObj];
+    arr.sort(function (a, b){ 
+      if(a.name > b.name){ return 1};
+      if(a.name < b.name){ return -1};
+      return 0;
+    });
+    return arr;
+  }
+
   render(){  
-    console.log('render()');
     const normalizeTodos = this.state.filter.toLowerCase();
     const visibleContacts = this.state.contacts.filter(contact => contact.name.toLowerCase().includes(normalizeTodos));
+    const sortVisibleContacts = this.sort(visibleContacts);
     return (
       <Container >
           <Section>Phonebook 
@@ -74,7 +84,7 @@ export default class App extends Component{
           ? <Section>Contacts 
               <Filter handleFilter={this.handleFilter}/>
               <Contacts 
-              contacts={visibleContacts}
+              contacts={sortVisibleContacts}
               removeConactApp={this.removeConactApp}
               />
             </Section>

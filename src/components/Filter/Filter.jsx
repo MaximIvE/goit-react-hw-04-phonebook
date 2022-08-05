@@ -9,7 +9,7 @@ export default class Filter extends Component{
     idInputFilter = nanoid();
 
     handlefilter = e => {
-        this.props.handleFilter({filter: e.currentTarget.value});
+        this.props.handleFilter({filter: e.currentTarget.value.trim()});
     }
 
     render(){
