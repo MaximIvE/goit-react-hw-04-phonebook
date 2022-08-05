@@ -16,9 +16,12 @@ export const Container = styled.div`
     color: #010101;
 `;
 
-export const Message = styled.p`
+export const Message = styled.h2`
+padding-top: 12px;
+margin-top: 20px;
 text-align: center;
 font-style: italic;
+font-weight: 400;
 font-size: 20px;
 width: 80vw;
 `;
