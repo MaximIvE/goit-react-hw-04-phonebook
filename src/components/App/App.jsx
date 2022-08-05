@@ -9,14 +9,32 @@ import Filter from 'components/Filter/Filter';
 
 export default class App extends Component{
   state={
-    contacts: [
-      {name: 'Rosie Simpson', number: '459-12-56'},
-      {name: 'Hermione Kline', number: '443-89-12'},
-      {name: 'Eden Clements', number: '645-17-79'},
-      {name: 'Annie Copeland', number: '227-91-26'},
-    ],
+    contacts: [],
     filter: "",
   }
+  
+  // defaultContacts = [
+  //   {name: 'Rosie Simpson', number: '459-12-56'},
+  //   {name: 'Hermione Kline', number: '443-89-12'},
+  //   {name: 'Eden Clements', number: '645-17-79'},
+  //   {name: 'Annie Copeland', number: '227-91-26'},
+  // ];
+
+  //Запускається 1 раз під час першого монтування компонента, перед render()
+  componentDidMount(){
+    const contacts = localStorage.getItem('contacts');
+    if (contacts){
+      const parseContacts = JSON.parse(contacts);
+      this.setState({contacts: parseContacts})
+    }
+  };
+
+  //Цей метод запускається кожен раз перед render(), коли стейт компонента оновився
+  componentDidUpdate(prevState){
+    if(this.state.contacts !== prevState.contacts){ 
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  };
 
   addContact=(card)=>{
     const {name} = card;
@@ -26,18 +44,6 @@ export default class App extends Component{
     }
     this.setState((prevState) => {return{contacts: [card, ...prevState.contacts]}});
   }
-
-  componentDidMount(){
-    //Запускається 1 раз під час монтування компонента, перед render()
-    console.log('compoundDidMount()');
-    
-  };
-
-  componentDidUpdate(prevState){
-    if(this.state.contacts !== prevState.contacts){ 
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  };
 
   handleFilter=(filter)=>{
     this.setState(filter);
@@ -77,4 +83,3 @@ export default class App extends Component{
     )
   };
 }
-
