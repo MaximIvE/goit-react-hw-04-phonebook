@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { Container,Message } from "./App.styled";
+import React from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import { Container, Message } from "./App.styled";
 
 import DataInputForm from '../DataInputForm/DataInputForm';
 import Section from '../Section/Section';
@@ -7,11 +8,10 @@ import Contacts from '../Contacts/Contacts';
 import Filter from 'components/Filter/Filter';
 
 
-export default class App extends Component{
-  state={
-    contacts: [],
-    filter: "",
-  }
+const  App = () => {
+
+  const [contacts, setContacts] = useState([]);
+  const [filter, setFilter] = useState("");
 
   // defaultContacts = [
   //   {name: 'Rosie Simpson', number: '459-12-56'},
@@ -21,64 +21,57 @@ export default class App extends Component{
   // ];
 
   //Запускається 1 раз під час першого монтування компонента, перед render()
-  componentDidMount(){
-    const contacts = localStorage.getItem('contacts');
-    if (contacts){
-      const parseContacts = JSON.parse(contacts);
-      this.setState({contacts: parseContacts})
+  useEffect(()=>{
+    const data = localStorage.getItem('contacts');
+    if (data.length > 0){
+      const parseContacts = JSON.parse(data);
+      setContacts(()=>parseContacts);
     }
-  };
+  },[]);
 
-  //Цей метод запускається кожен раз перед render(), коли стейт компонента оновився
-  componentDidUpdate(prevState){
-    if(this.state.contacts !== prevState.contacts){ 
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  };
-
-  addContact=(card)=>{
-    const {name} = card;
-    if (this.state.contacts.find(contact => contact.name === name)){
+  useEffect(()=>{
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  },[contacts]);
+  
+  const addContact=(name, number)=>{
+    if (contacts.find(contact => contact.name === name)){
       alert(name + " is already in contacts.");
       return;
-    }
-    this.setState((prevState) => {return{contacts: [card, ...prevState.contacts]}});
-  }
+    };
+    setContacts(prevState=>{return [{name, number}, ...prevState]});
+  };
 
-  handleFilter=(filter)=>{
-    this.setState(filter);
-  }
+  const handleFilter=(filter)=>{
+    setFilter(filter);
+  };
 
-  contactsByFilter(){
-    return this.state.contacts.filter((user)=>{return user.name})
-  }
-
-  removeConactApp=(id)=>{
-    const newContacts = this.state.contacts.filter(contact => {return ((contact.name) !== id )});
-    this.setState({contacts: newContacts});
+  const removeConactApp=(id)=>{
+    const newContacts = contacts.filter(contact => {return ((contact.name) !== id )});
+    setContacts(newContacts);
+  };
+ 
+  const normalizeTodos = filter.toLowerCase();
+  const visibleContacts = contacts.filter(contact => contact.name.toLowerCase().includes(normalizeTodos));
     
-  }
-
-  render(){  
-    const normalizeTodos = this.state.filter.toLowerCase();
-    const visibleContacts = this.state.contacts.filter(contact => contact.name.toLowerCase().includes(normalizeTodos));
     return (
       <Container >
           <Section>Phonebook 
             <DataInputForm 
-            addContact={this.addContact}
+            addContact={addContact}
             />
           </Section>
-          {this.state.contacts.length > 0 
+          {contacts.length > 0 
           ? <Section>Contacts 
-              <Filter handleFilter={this.handleFilter}/>
+              <Filter handleFilter={handleFilter}/>
               <Contacts 
               contacts={visibleContacts}
-              removeConactApp={this.removeConactApp}
+              removeConactApp={removeConactApp}
               />
             </Section>
           : <Message>No information.</Message>}
       </Container>
-    )
-  };
-}
+    );
+};
+
+
+export default App;

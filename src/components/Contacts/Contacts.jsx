@@ -1,33 +1,30 @@
-import { Component } from "react";
 import {List} from './Contacts.styled';
 import ConactCard from "components/ConactCard/ConactCard";
 import PropTypes from 'prop-types';
 
 
-export default class Contacts extends Component{
-    getCardMarking(){
-        return (this.props.contacts.map( (user) =>
+export default function Contacts({removeConactApp, contacts}){
+    function getCardMarking(){
+        return (contacts.map( (user) =>
                 <ConactCard 
             key={user.name}
             name = {user.name}
             number = {user.number}
-            removeCard={this.removeCard}/>
+            removeCard={removeCard}/>
             )
-            );
-    }
+        );
+    };
 
-    removeCard = (e) => {
-        this.props.removeConactApp(e.currentTarget.name);
-    }
+    const removeCard = (e) => {
+        removeConactApp(e.currentTarget.name);
+    };
     
-    render(){
-        return (
-            <List>
-                {this.getCardMarking()}
-            </List>
-        )
-    }
-}
+    return (
+        <List>
+            {getCardMarking()}
+        </List>
+    )
+};
 
 
 Contacts.propTypes={
