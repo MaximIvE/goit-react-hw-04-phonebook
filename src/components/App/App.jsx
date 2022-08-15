@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect} from 'react';
 import { Container, Message } from "./App.styled";
 
 import DataInputForm from '../DataInputForm/DataInputForm';
