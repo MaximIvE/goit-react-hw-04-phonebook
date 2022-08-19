@@ -22,9 +22,7 @@ const  App = () => {
   //"Махінацію" з цією функцією прийшлось зробити із-за строгого режима. Під час перезавантаження сторінки useEffect запускався два рази і перезатирав значення LocaleStorage на пустий масив
   
   function localContacts(){
-    console.log("Перший запуск");
     const data = localStorage.getItem('contacts');
-    console.log('data', data);
     if(!data)return[];
     const parseContacts = JSON.parse(data);
     if (parseContacts)return parseContacts;
