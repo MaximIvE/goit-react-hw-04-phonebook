@@ -59,7 +59,6 @@ const DataInputForm = ({addContact})=>{
                 </ButtonForm>
             </DataInput>
         );
-
 };
 
 export default memo(DataInputForm);
