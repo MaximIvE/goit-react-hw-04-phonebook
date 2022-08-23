@@ -6,6 +6,8 @@ import DataInputForm from '../DataInputForm/DataInputForm';
 import Section from '../Section/Section';
 import Contacts from '../Contacts/Contacts';
 import Filter from 'components/Filter/Filter';
+import Settings from 'components/Settings';
+
 
 const  App = () => {
 
@@ -53,6 +55,8 @@ const  App = () => {
   const visibleContacts = contacts.filter(contact => contact.name.toLowerCase().includes(normalizeTodos));
   
     return (
+      <>
+      <Settings />
       <Container >
           <Section>Phonebook 
             {<DataInputForm 
@@ -69,6 +73,7 @@ const  App = () => {
             </Section>
           : <Message>No information.</Message>}
       </Container>
+      </>
     );
 };
 

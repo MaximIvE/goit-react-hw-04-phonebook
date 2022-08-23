@@ -11,8 +11,6 @@ export const Container = styled.div`
     background-size: cover;
     height: 100vh;
     display: flex;
-    
-   
     color: #010101;
 `;
 

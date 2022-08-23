@@ -1,11 +1,11 @@
-import { Header, Wrapper } from './Section.styled';
+import { Title, Wrapper } from './Section.styled';
 import PropTypes from 'prop-types';
 
 
 export default function Section({children}){
     return(
         <Wrapper>
-            <Header>{children[0]}</Header>
+            <Title>{children[0]}</Title>
             {children[1]}
             {children[2]}
         </Wrapper>

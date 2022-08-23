@@ -19,6 +19,6 @@ padding: 8px;
     }
 `;
 
-export const Header = styled.h2`
+export const Title = styled.h2`
     text-align: center;
 `;
