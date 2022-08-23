@@ -11,7 +11,7 @@ import Settings from 'components/Settings';
 
 const  App = () => {
 
-  const [contacts, setContacts] = useState(localContacts());
+  const [contacts, setContacts] = useState(()=>localContacts());
   const [filter, setFilter] = useState("");
 
   // defaultContacts = [
@@ -22,8 +22,8 @@ const  App = () => {
   // ];
 
   //"Махінацію" з цією функцією прийшлось зробити із-за строгого режима. Під час перезавантаження сторінки useEffect запускався два рази і перезатирав значення LocaleStorage на пустий масив
-  
   function localContacts(){
+    console.log("localContacts");
     const data = localStorage.getItem('contacts');
     if(!data)return[];
     const parseContacts = JSON.parse(data);
