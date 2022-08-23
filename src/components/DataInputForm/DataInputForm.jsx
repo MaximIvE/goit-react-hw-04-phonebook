@@ -18,36 +18,28 @@ const DataInputForm = ({addContact})=>{
             setName("");
             setNumber("");
         };
-    
-        const handleNameChange=(e)=>{
-            setName(e.currentTarget.value);
-        };
-    
-        const handlePhoneChange=(e)=>{
-            setNumber(e.currentTarget.value);
-        };
         
         return (
             <DataInput onSubmit={handleSubmit}>
                 <label htmlFor={idInputName}>Name</label>
                 <input
+                    name="name"
                     type="text"
                     id={idInputName}
-                    name="name"
+                    value={name}
+                    onChange={e=>setName(e.currentTarget.value)}
                     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                     title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                     required
-                    value={name}
-                    onChange={handleNameChange}
                 />
                 
                 <label htmlFor={idInputNumber}>Number</label>
                 <input
-                    onChange={handlePhoneChange}
-                    value={number}
-                    id={idInputNumber}
-                    type="tel"
                     name="number"
+                    type="tel"
+                    id={idInputNumber}
+                    value={number}
+                    onChange={e=>setNumber(e.currentTarget.value)}
                     pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                     title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                     required
