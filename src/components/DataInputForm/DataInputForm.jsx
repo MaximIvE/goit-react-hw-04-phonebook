@@ -1,6 +1,8 @@
-import { useState, memo} from 'react';
+import { useState, memo, useContext} from 'react';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
+import langContext from 'langContext';
+import locale from '../../materials/langauges.json';
 
 import { DataInput,ButtonForm } from './DataInputForm.styled';
 
@@ -19,9 +21,17 @@ const DataInputForm = ({addContact})=>{
             setNumber("");
         };
         
+        // "header": "Книга контактів",
+        // "name": "Ім'я",
+        // "number": "Номер",
+        // "buttonText": "Д
+
+        const lang = useContext(langContext);
+        const content= locale[lang].phonebook;
+
         return (
             <DataInput onSubmit={handleSubmit}>
-                <label htmlFor={idInputName}>Name</label>
+                <label htmlFor={idInputName}>{content.name}</label>
                 <input
                     name="name"
                     type="text"
@@ -33,7 +43,7 @@ const DataInputForm = ({addContact})=>{
                     required
                 />
                 
-                <label htmlFor={idInputNumber}>Number</label>
+                <label htmlFor={idInputNumber}>{content.number}</label>
                 <input
                     name="number"
                     type="tel"
@@ -47,7 +57,7 @@ const DataInputForm = ({addContact})=>{
                 <ButtonForm 
                     type='submit' 
                     name="contacts" 
-                    >Add contact
+                    >{content.buttonText}
                 </ButtonForm>
             </DataInput>
         );

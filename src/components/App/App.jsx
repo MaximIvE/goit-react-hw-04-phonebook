@@ -7,12 +7,17 @@ import Section from '../Section/Section';
 import Contacts from '../Contacts/Contacts';
 import Filter from 'components/Filter/Filter';
 import Settings from 'components/Settings';
-
+import langContext from 'langContext';
+import locale from '../../materials/langauges.json';
 
 const  App = () => {
 
-  const [contacts, setContacts] = useState(()=>localContacts());
+  const [contacts, setContacts] = useState(()=>localContacts('contacts'));
   const [filter, setFilter] = useState("");
+  //Відмальовування активної мови відбувається в Langaguge, а цей стейт потрібен для контексту
+  const [langauge, setLangauge] = useState(()=>localContacts('langauge'));
+
+  const content = locale[langauge];
 
   // defaultContacts = [
   //   {name: 'Rosie Simpson', number: '459-12-56'},
@@ -22,25 +27,28 @@ const  App = () => {
   // ];
 
   //"Махінацію" з цією функцією прийшлось зробити із-за строгого режима. Під час перезавантаження сторінки useEffect запускався два рази і перезатирав значення LocaleStorage на пустий масив
-  function localContacts(){
-    console.log("localContacts");
-    const data = localStorage.getItem('contacts');
-    if(!data)return[];
+  function localContacts(key){
+    const data = localStorage.getItem(key);
+    if(!data){
+      if(key === 'contacts')return[];
+      if(key === 'langauge')return'Ua';
+    }
     const parseContacts = JSON.parse(data);
     if (parseContacts)return parseContacts;
   };
-
+  
   useEffect(()=>{
     localStorage.setItem('contacts', JSON.stringify(contacts));
   },[contacts]);
 
-  const addContact= useCallback((name, number)=>{
+  const addContact = useCallback((name, number)=>{
     if (contacts.find(contact => contact.name === name)){
-      alert(name + " is already in contacts.");
+      alert(name + " " + content.notific);
       return;
     };
     setContacts(prevState=>{return [{name, number}, ...prevState]});
-  },[contacts]);
+  },[contacts, content.notific]);
+
 
   const handleFilter=(filter)=>{
     setFilter(filter);
@@ -50,30 +58,36 @@ const  App = () => {
     const newContacts = contacts.filter(contact => {return ((contact.name) !== id )});
     setContacts(newContacts);
   },[contacts]);
+
+  const changeLangauge = useCallback((lang)=>{return setLangauge(lang)},[setLangauge])
  
   const normalizeTodos = filter.toLowerCase();
   const visibleContacts = contacts.filter(contact => contact.name.toLowerCase().includes(normalizeTodos));
   
+
     return (
-      <>
-      <Settings />
+      <langContext. Provider value={langauge}>
+      <Settings 
+        langauge={langauge} 
+        changeLangauge={changeLangauge}
+      />
       <Container >
-          <Section>Phonebook 
+          <Section>{content.phonebook.header}
             {<DataInputForm 
-            addContact={addContact}
+              addContact={addContact}
             />}
           </Section>
           {contacts.length > 0 
-          ? <Section>Contacts 
+          ? <Section>{content.contacts.header}
               <Filter handleFilter={handleFilter}/>
               <Contacts 
-              contacts={visibleContacts}
-              removeConactApp={removeConactApp}
+                contacts={visibleContacts}
+                removeConactApp={removeConactApp}
               />
             </Section>
-          : <Message>No information.</Message>}
+          : <Message>{content.message}</Message>}
       </Container>
-      </>
+      </langContext. Provider>
     );
 };
 

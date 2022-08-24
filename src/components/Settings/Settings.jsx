@@ -1,11 +1,13 @@
 import { Wrapper } from './Settings.styled';
+import Langauge from '../Langauge/Langauge';
 
-export default function Settings(){
+export default function Settings(props){
 
     return(
         <Wrapper>
-            <div style={{display: 'inline'}}>Uk </div>
-            <div style={{display: 'inline'}}> []</div>
+            <Langauge
+                {...props}
+            />
         </Wrapper>
     )
 }

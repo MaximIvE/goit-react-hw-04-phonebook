@@ -1,0 +1,37 @@
+{
+    "Ua": {"phonebook":{
+            "header": "Книга контактів",
+            "name": "Ім'я",
+            "number": "Номер",
+            "buttonText": "Додати"
+            },
+
+        "contacts":{
+            "header": "Контакти",
+            "filtrText": "Пошук контактів за іменем",
+            "filtrPlaceholder": "Ім'я",
+            "buttonText": "Видалити"
+            },
+        
+            "message": "Додайте свій перший контакт.",
+            "notific": " вже є в контактах."
+        },
+
+    "En": {"phonebook":{
+            "header": "Phonebook",
+            "name": "Name",
+            "number": "Number",
+            "buttonText": "Add conact"
+            },
+
+        "contacts":{
+            "header": "Conacts",
+            "filtrText": "Find contacts by name",
+            "filtrPlaceholder": "Name",
+            "buttonText": "Delete"
+            },
+
+            "message": "No information.",
+            "notific": " is already in contacts."
+        }
+}
