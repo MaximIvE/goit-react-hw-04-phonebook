@@ -1,16 +1,12 @@
 import styled from "styled-components";
 
 export const LangaugeStyled = styled.div`
-  display: inline;
   margin:4px;
   padding:4px;
- 
-  
 `;
 
 export const Btn = styled.button`
 width:40px;
-/* background-color: yellow; */
 background-color:  rgba(0,0,0,0);
 cursor: pointer;
 border:none;
