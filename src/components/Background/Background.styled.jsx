@@ -1,31 +1,22 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-    height:24px;
-    width:24px;
-    padding-top: 2px;
-`;
-
 export const BackgroundBtn = styled.button`
-    display: block;
-    background-color:  rgba(0,0,0,0);
+    background-color:  rgba(255,255,255,0.8);
     cursor: pointer;
-    border:none;  
-    padding:0;
-    margin-left: auto;
-    margin-right: auto;
-    height:20px;
-    transition-property: height;
+    padding: 1px;
+    height:30px;
+    transition-property: background-color;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0, 0, 0.1, 1);
-    &:hover{
-        height:22px;
-    }
-`;
+    border-radius:20%;
+     &:hover{
+        background-color:  rgba(255,255,255,0.9);
+    } 
+`
 
 export const iconStyle = {
     backgroundColor: "rgba(0,0,0,0)",
     height: "100%",
     width: "auto",
-    fill: "teal",
+    fill: "#313c3d",
 }

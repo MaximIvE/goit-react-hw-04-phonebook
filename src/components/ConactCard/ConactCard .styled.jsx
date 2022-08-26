@@ -3,11 +3,14 @@ import { Button } from '../../styles/placeholders.styled'
 
 export const Card = styled.li`
     display: flex;
-    padding: 4px;
+    padding: 8px;
     align-items: center;
     height: 24px;
-    margin: 0;
+    margin: 2px;
     border-bottom:  rgba(0,0,0,0.1) 1px solid;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #e9f1f2;
+    text-shadow: 0 0 0.8em black;
 `;
 
 export const Name = styled.p`

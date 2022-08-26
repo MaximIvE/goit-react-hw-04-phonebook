@@ -5,10 +5,10 @@ import ImageGallery from '../ImageGallery/ImageGallery';
 
 import { RiImage2Fill } from "react-icons/ri";
 
-import {Wrapper, BackgroundBtn, iconStyle} from "./Background.styled";
+import { BackgroundBtn, iconStyle} from "./Background.styled";
 
 
-export default function Background(){
+export default function Background({changeBackground}){
     const [showeModal, setShoweModal] = useState(false);
     const [backgroundImg, setBackgroundImg] = useState(null);
 
@@ -21,16 +21,16 @@ export default function Background(){
     };
 
     const changeImage=(newImage)=>{
-        
-
+        changeBackground(newImage);
+        setShoweModal(false);
     }
 
-    return  <Wrapper>
+    return  <>
             <BackgroundBtn type="button" disabled={showeModal} onClick={onModal}>
                 <RiImage2Fill style={iconStyle}/>
             </BackgroundBtn>
            {showeModal && <Modal onClose={()=>setShoweModal(false)}>
                 <ImageGallery reply={backgroundImg} changeImage={changeImage}/>
             </Modal>}
-            </Wrapper>
+            </>
 };

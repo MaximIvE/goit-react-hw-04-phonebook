@@ -16,6 +16,7 @@ const  App = () => {
   const [filter, setFilter] = useState("");
   //Відмальовування активної мови відбувається в Langaguge, а цей стейт потрібен для контексту
   const [langauge, setLangauge] = useState(()=>localContacts('langauge'));
+  const [background, setBackground] = useState(()=>localContacts('background'));
 
   const content = locale[langauge];
 
@@ -32,6 +33,7 @@ const  App = () => {
     if(!data){
       if(key === 'contacts')return[];
       if(key === 'langauge')return'Ua';
+      if(key === 'background')return "https://pixabay.com/get/g61892b2c1fd49e5e84c7c097eef62144aec8dda3b4b9cd34f66fde44ac56e51344b349409acbb904becd2322b748f080afb29f60f8173860c8825e1fcbfae97c_1280.jpg";
     }
     const parseContacts = JSON.parse(data);
     if (parseContacts)return parseContacts;
@@ -40,6 +42,10 @@ const  App = () => {
   useEffect(()=>{
     localStorage.setItem('contacts', JSON.stringify(contacts));
   },[contacts]);
+
+  useEffect(()=>{
+    localStorage.setItem('background', JSON.stringify(background));
+  },[background]);
 
   const addContact = useCallback((name, number)=>{
     if (contacts.find(contact => contact.name === name)){
@@ -54,6 +60,11 @@ const  App = () => {
     setFilter(filter);
   };
 
+  const handleBackground=(newbackground)=>{
+    console.log(newbackground);
+    setBackground(newbackground);
+  };
+
   const removeConactApp=useCallback((id)=>{
     const newContacts = contacts.filter(contact => {return ((contact.name) !== id )});
     setContacts(newContacts);
@@ -64,14 +75,16 @@ const  App = () => {
   const normalizeTodos = filter.toLowerCase();
   const visibleContacts = contacts.filter(contact => contact.name.toLowerCase().includes(normalizeTodos));
   
-
+ console.log("Рендер компонента Арр");
+ console.log("background, ", background);
     return (
       <langContext. Provider value={langauge}>
       <Settings 
         langauge={langauge} 
         changeLangauge={changeLangauge}
+        changeBackground={handleBackground}
       />
-      <Container >
+      <Container bg={background}>
           <Section>{content.phonebook.header}
             {<DataInputForm 
               addContact={addContact}
