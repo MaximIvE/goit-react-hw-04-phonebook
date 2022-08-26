@@ -75,8 +75,7 @@ const  App = () => {
   const normalizeTodos = filter.toLowerCase();
   const visibleContacts = contacts.filter(contact => contact.name.toLowerCase().includes(normalizeTodos));
   
- console.log("Рендер компонента Арр");
- console.log("background, ", background);
+
     return (
       <langContext. Provider value={langauge}>
       <Settings 
