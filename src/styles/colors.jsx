@@ -16,3 +16,4 @@ export const color = {
         shActive2: 'rgba(0,0,0,0.3)',
     }
 };
+

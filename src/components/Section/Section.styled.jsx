@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-padding: 8px;
+padding: 4px 12px;
 
     &:first-child{
         flex-basis: 20vw;
@@ -21,4 +21,8 @@ padding: 8px;
 
 export const Title = styled.h2`
     text-align: center;
+    margin:  4px 0;
+    @media screen and (min-width:480px){
+        margin:  28px 0;
+    }
 `;

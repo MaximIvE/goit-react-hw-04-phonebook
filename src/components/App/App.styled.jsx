@@ -5,10 +5,15 @@ export const Container = styled.div`
     background-image:  url(${props=> props.bg});
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
+    background-position: 50% 50%;
     height: 100vh;
-    display: flex;
+    
     color: #fff;
     text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+    @media screen and (min-width:480px){
+        display: flex;
+    }
 `;
 
 export const Message = styled.h2`

@@ -78,12 +78,13 @@ const  App = () => {
 
     return (
       <langContext. Provider value={langauge}>
-      <Settings 
+      
+      <Container bg={background}>
+          <Settings 
         langauge={langauge} 
         changeLangauge={changeLangauge}
         changeBackground={handleBackground}
       />
-      <Container bg={background}>
           <Section>{content.phonebook.header}
             {<DataInputForm 
               addContact={addContact}

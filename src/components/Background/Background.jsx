@@ -13,9 +13,9 @@ export default function Background({changeBackground}){
     const [backgroundImg, setBackgroundImg] = useState(null);
 
     const onModal=async()=>{
-        console.log("Потрібно робити фетч обчислювати галерею та запускати модалку");
+        
         const data = await imageApi();
-        console.log(data.hits);
+        
         setBackgroundImg(data.hits);
         setShoweModal(true);
     };
