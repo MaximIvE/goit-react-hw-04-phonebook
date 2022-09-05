@@ -62,7 +62,6 @@ const  App = () => {
   };
 
   const handleBackground=(newbackground)=>{
-    console.log(newbackground);
     setBackground(newbackground);
   };
 

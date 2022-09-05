@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 export default function ImageGallery({reply, changeImage}){
     const HandkeClickCard=(e)=>{
         const image = e.currentTarget.children[0];
-        console.log(image.dataset.source);
         changeImage(image.dataset.source);
     }
 
